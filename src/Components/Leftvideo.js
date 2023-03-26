@@ -7,17 +7,21 @@ const Leftvideo = (props) => {
     marginTop: "50px",
     marginBottom: "50px",
     position: "absolute",
-    left: "5px",
-    right: "50vw",
+
+    right: "22vw",
+    left: "7px",
     top: 0,
     border: "1px solid white",
-    zIndex: 501,
+    zIndex: 500,
     display: props.displayCSS.display,
   };
   return (
     <>
       <div style={linkStyle}>
-        <video style={{ width: "100%", height: "100%" }} controls>
+        <video
+          style={{ width: "100%", height: "100%", cursor: "pointer" }}
+          controls
+        >
           <source src="/Videos/video2.mp4" />
         </video>
       </div>

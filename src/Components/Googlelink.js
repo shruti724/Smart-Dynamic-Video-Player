@@ -15,6 +15,7 @@ const Googlelink = (props) => {
     top: 0,
     border: "1px solid white",
     zIndex: 500,
+    
     display: props.displayCSS.display,
 
   };
@@ -26,6 +27,7 @@ const Googlelink = (props) => {
           float: "right",
           paddingLeft: "10px",
           paddingRight: "10px",
+          cursor: "pointer",
         }}
       >
         Click Here to Explore the world!

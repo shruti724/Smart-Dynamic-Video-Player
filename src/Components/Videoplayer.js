@@ -4,16 +4,33 @@ import Googlelink from "./Googlelink";
 import Leftvideo from "./Leftvideo";
 import Rightvideo from "./Rightvideo";
 
+
 const Videoplayer = () => {
   const videolen = useRef(null);
   let show = {
     display:"none"
   }
-  const [display, setDisplay] = useState(show);
+  const [visibility, setVisibility] = useState(show);
   
+  // if click on Rightvideo src setState(link:"video2.mp4") else click on Leftvideo src setState(link: "video3.mp4") and initially link = "video1.mp4".
 
   // var totalDuration = 0;
   // var ispopulated = false;
+  let sourceVideo = {
+    scr: './Videos/video1.mp4',
+    type: 'mp4' 
+  }
+  // const [click, setClick] = useState(sourceVideo)
+  
+  // let sourceVideo2 = {
+  //   scr: './Videos/video2.mp4',
+  //   type: 'mp4', 
+   
+  // }
+  // let sourceVideo3 = {
+  //   scr: "./Videos/video3.mp4",
+  //   type: "mp4",
+  // };
 
   const handleLoadedMetadata = () => {
     const videoE = videolen.current;
@@ -30,7 +47,7 @@ const Videoplayer = () => {
 
       console.log(videoE.currentTime);
       if (videoE.currentTime === Math.round(videoE.duration / 2)) {
-        setDisplay({display:"inline"})
+        setVisibility({ display: "inline" });
       }
     }
   };
@@ -52,23 +69,38 @@ const Videoplayer = () => {
     //     ispopulated = true;
     //   }
   };
+  // const link ={
+  //   // setClick()
+  //   console.log("apple")
+  // }
+  // const print= ()=> {
+  //   console.log("hello")
+  // }
+ 
   return (
     <>
-      <div className="main" style={mainDivStyle}>
-        <Googlelink displayCSS={display} />
-        <Leftvideo displayCSS={display} />
-        <Rightvideo displayCSS={display} />
-        {/* By default it is false, when 50% is reached updated the state to "inline" and when the component updates, the diplay will get inline*/}
-        <video
-          onProgress={handleProgress}
-          style={{ width: "100%", height: "100%" }}
-          ref={videolen}
-          onLoadedMetadata={handleLoadedMetadata}
-          autoPlay={false}    
-          controls
-        >
-          <source src="/Videos/video1.mp4" />
-        </video>
+      <div className="container my-4">
+        <div className="main" style={mainDivStyle}>
+          <div>
+            <Googlelink displayCSS={visibility} />
+          </div>
+          <div>
+            <Leftvideo displayCSS={visibility} />
+          </div>
+          <div>
+            <Rightvideo displayCSS={visibility} />
+          </div>
+          {/* By default it is false, when 50% is reached updated the state to "inline" and when the component updates, the diplay will get inline*/}
+          <video
+            onProgress={handleProgress}
+            style={{ width: "100%", height: "100%" }}
+            ref={videolen}
+            onLoadedMetadata={handleLoadedMetadata}
+            controls
+          >
+            <source src={sourceVideo.scr} />
+          </video>
+        </div>
       </div>
     </>
   );
